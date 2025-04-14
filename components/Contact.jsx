@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import DOMPurify from "dompurify";
@@ -14,6 +14,13 @@ function Contact() {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    // Debug: Log environment variables
+    console.log("EmailJS Service ID:", process.env.NEXT_PUBLIC_SERVICE_ID);
+    console.log("EmailJS Template ID:", process.env.NEXT_PUBLIC_TEMPLATE_ID);
+    console.log("EmailJS Public Key:", process.env.NEXT_PUBLIC_EMAILJS_KEY);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +44,20 @@ function Contact() {
     }
 
     setLoading(true);
+
+    // Debug: Log the data being sent
+    console.log("Sending email with data:", {
+      serviceId: process.env.NEXT_PUBLIC_SERVICE_ID,
+      templateId: process.env.NEXT_PUBLIC_TEMPLATE_ID,
+      publicKey: process.env.NEXT_PUBLIC_EMAILJS_KEY,
+      formData: {
+        from_name: DOMPurify.sanitize(form.name),
+        to_name: "Chevuri Chandrasekhar Dhanush",
+        from_email: DOMPurify.sanitize(form.email),
+        to_email: "chevuricsdhanush@gmail.com",
+        message: DOMPurify.sanitize(form.message),
+      }
+    });
 
     emailjs
       .send(
@@ -64,7 +85,7 @@ function Contact() {
         },
         (error) => {
           setLoading(false);
-          console.log(error);
+          console.error("EmailJS Error:", error);
           alert("Something went wrong. Please try again later.");
         }
       );
