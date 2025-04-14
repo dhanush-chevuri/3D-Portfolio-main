@@ -9,6 +9,12 @@ const nextConfig = {
       "www.raw.githubusercontent.com",
       "raw.githubusercontent.com",
     ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
