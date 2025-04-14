@@ -32,9 +32,9 @@ function About() {
         className="mt-4 dark:text-ctnSecondaryDark text-gray-300 text-[17px] w-full leading-[30px] flex flex-col justify-between gap-6"
       >
         <div>
-        Hello! I'm Chevuri Chandrasekhar Dhanush, a passionate web developer, data analyst, and problem solver. Currently, I'm the Vice Chairperson of MLSC KARE and I'm pursuing a B.Tech degree in Computer Science and Engineering at Kalasalingam Academy of Research and Education, with an expected graduation year of 2026.
+          Hello! I&apos;m Chevuri Chandrasekhar Dhanush, a passionate web developer, data analyst, and problem solver. Currently, I&apos;m the Vice Chairperson of MLSC KARE and I&apos;m pursuing a B.Tech degree in Computer Science and Engineering at Kalasalingam Academy of Research and Education, with an expected graduation year of 2026.
 
-I'm a software developer with experience in TypeScript, TailwindCSS, and JavaScript, and I specialize in frameworks such as React.js, Next.js, Node.js, React-Three-Fiber, and Three.js. I also have strong expertise in data analysis, machine learning, and front-end development, with a solid grasp of fundamental data structures and algorithms.
+          I&apos;m a software developer with experience in TypeScript, TailwindCSS, and JavaScript, and I specialize in frameworks such as React.js, Next.js, Node.js, React-Three-Fiber, and Three.js. I also have strong expertise in data analysis, machine learning, and front-end development, with a solid grasp of fundamental data structures and algorithms.
           <br className="sm:block hidden" />
           Let&apos;s collaborate to bring your ideas to life!
         </div>
