@@ -3,17 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    unoptimized: true,
     domains: [
       "res.cloudinary.com",
       "go-skill-icons.vercel.app",
       "www.raw.githubusercontent.com",
       "raw.githubusercontent.com",
-    ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
     ],
   },
   webpack(config) {
