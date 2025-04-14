@@ -41,7 +41,7 @@ jobs:
           NEXT_PUBLIC_EMAILJS_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_KEY }}
       
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ./out
 
