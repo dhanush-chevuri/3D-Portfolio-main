@@ -2,9 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
   images: {
-    unoptimized: true,
     domains: [
       "res.cloudinary.com",
       "go-skill-icons.vercel.app",
@@ -39,8 +37,6 @@ const nextConfig = {
 
     return config;
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/3D-Portfolio-main' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/3D-Portfolio-main/' : '',
 };
 
 module.exports = nextConfig;
