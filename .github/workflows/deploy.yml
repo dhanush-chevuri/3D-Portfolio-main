@@ -63,6 +63,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
+          name: nextjs-site
           path: ./out
           retention-days: 1
 
@@ -74,6 +75,12 @@ jobs:
     needs: build
     timeout-minutes: 5
     steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: nextjs-site
+          path: ./out
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
