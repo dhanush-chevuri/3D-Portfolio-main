@@ -3,42 +3,67 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   output: 'export',
+  
   images: {
     unoptimized: true,
-    domains: [
-      "res.cloudinary.com",
-      "go-skill-icons.vercel.app",
-      "www.raw.githubusercontent.com",
-      "raw.githubusercontent.com",
-    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'go-skill-icons.vercel.app'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.raw.githubusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com'
+      }
+    ]
   },
+  
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg")
     );
 
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
         test: /\.svg$/i,
-        resourceQuery: /url/, // *.svg?url
+        resourceQuery: /url/,
       },
-      // Convert all other *.svg imports to React components
       {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
-        resourceQuery: { not: /url/ }, // exclude if *.svg?url
+        resourceQuery: { not: /url/ },
         use: ["@svgr/webpack"],
       }
     );
 
-    // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
+
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
+  experimental: {
+    // Remove serverComponents as it conflicts with Framer Motion
+    turbo: {
+      resolveAlias: {}
+    }
+  },
+
+  env: {
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  }
 };
 
 module.exports = nextConfig;
